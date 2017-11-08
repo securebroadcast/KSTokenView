@@ -133,6 +133,9 @@ open class KSTokenView: UIView {
   /// default is true. If false, token can only be added from picking search results. All the text input would be ignored
   open var shouldAddTokenFromTextInput = true
   
+  /// default is false. If true, the return key will dismiss the keyboard
+  open var shouldDismissKeyboardOnReturnKey = false
+  
   /// default is 1. If set to 0, it shows all search results without typing anything
   open var minimumCharactersToSearch = 1
   
@@ -912,11 +915,20 @@ extension KSTokenView : UITextFieldDelegate {
     //_tokenField.scrollViewScrollToEnd()
     return true
   }
-  
-  public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    resignFirstResponder()
-    return true
-  }
+   
+   public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    
+      if shouldDismissKeyboardOnReturnKey {
+        // resign first responder and dismiss keyboard
+        resignFirstResponder()
+      } else {
+        // add token and don't dismiss keyboard
+        _addTokenFromUntokenizedText(_tokenField)
+      }
+    
+      return shouldDismissKeyboardOnReturnKey
+   }
+
 }
 
 //MARK: - Extension UITableViewDelegate
