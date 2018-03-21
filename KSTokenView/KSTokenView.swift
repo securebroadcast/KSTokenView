@@ -355,6 +355,15 @@ open class KSTokenView: UIView {
     }
   }
   
+  /// Default is black
+  open var textColor: UIColor = UIColor.black {
+    didSet {
+      if (oldValue != backgroundColor && _tokenField != nil) {
+        _tokenField.textColor = textColor
+      }
+    }
+  }
+  
   //MARK: - Constructors
   //__________________________________________________________________________________
   //
