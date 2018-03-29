@@ -408,6 +408,7 @@ open class KSTokenView: UIView {
     _tokenField.tokenFieldDelegate = self
     _tokenField.placeholder = ""
     _tokenField.autoresizingMask = [.flexibleWidth]
+    _tokenField.keyboardType = .asciiCapable
     _updateTokenField()
     addSubview(_tokenField)
     
