@@ -111,7 +111,7 @@ open class KSTokenView: UIView {
   /// returns the value of field
   open var text : String {
     get {
-      return _tokenField.text!.substring(with: _tokenField.text!.characters.index(_tokenField.text!.startIndex, offsetBy: 1)..<self._tokenField.text!.endIndex)
+      return _tokenField.text!.substring(with: _tokenField.text!.index(_tokenField.text!.startIndex, offsetBy: 1)..<self._tokenField.text!.endIndex)
     }
     set (string) {
       _tokenField.text = KSTextEmpty+string
@@ -885,15 +885,15 @@ extension KSTokenView : UITextFieldDelegate {
     let olderText = _tokenField.text
     var olderTextTrimmed = olderText!
     // remove the empty text marker from the beginning of the string
-    if (olderText?.characters.first == KSTextEmpty.characters.first) {
-      olderTextTrimmed = olderText!.substring(from: olderText!.characters.index(olderText!.startIndex, offsetBy: 1))
+    if (olderText?.first == KSTextEmpty.first) {
+      olderTextTrimmed = olderText!.substring(from: olderText!.index(olderText!.startIndex, offsetBy: 1))
     }
     
     // Check if character is removed at some index
     // Remove character at that index
     if (string.isEmpty) {
-      let first: String = olderText!.substring(to: olderText!.characters.index(olderText!.startIndex, offsetBy: range.location)) as String
-      let second: String = olderText!.substring(from: olderText!.characters.index(olderText!.startIndex, offsetBy: range.location+1)) as String
+      let first: String = olderText!.substring(to: olderText!.index(olderText!.startIndex, offsetBy: range.location)) as String
+      let second: String = olderText!.substring(from: olderText!.index(olderText!.startIndex, offsetBy: range.location+1)) as String
       searchString = first + second
       searchString = searchString.trimmingCharacters(in: CharacterSet.whitespaces)
       
@@ -904,13 +904,13 @@ extension KSTokenView : UITextFieldDelegate {
         return false
       }
       searchString = (olderText! as NSString).replacingCharacters(in: range, with: string)
-      if (searchString.characters.first == KSTextEmpty.characters.first) {
-        searchString = searchString.substring(from: searchString.characters.index(searchString.startIndex, offsetBy: 1))
+      if (searchString.first == KSTextEmpty.first) {
+        searchString = searchString.substring(from: searchString.index(searchString.startIndex, offsetBy: 1))
       }
     }
     
     // Allow all other characters
-    if (searchString.characters.count >= minimumCharactersToSearch && searchString != "\n") {
+    if (searchString.count >= minimumCharactersToSearch && searchString != "\n") {
       _lastSearchString = searchString
       _startSearchWithString(_lastSearchString)
     } else {
@@ -918,7 +918,7 @@ extension KSTokenView : UITextFieldDelegate {
     }
     
     // max character limit
-    if searchString.characters.count > maximumCharacterLimit {
+    if searchString.count > maximumCharacterLimit {
       return false
     }
     
@@ -933,7 +933,7 @@ extension KSTokenView : UITextFieldDelegate {
         resignFirstResponder()
       } else {
         // add token and don't dismiss keyboard
-        _addTokenFromUntokenizedText(_tokenField)
+        _ = _addTokenFromUntokenizedText(_tokenField)
       }
     
       return shouldDismissKeyboardOnReturnKey
