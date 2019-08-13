@@ -672,7 +672,7 @@ open class KSTokenField: UITextField {
       return super.beginTracking(touch, with: event)
    }
    
-   func tokenFieldTextDidChange(_ textField: UITextField) {
+   @objc func tokenFieldTextDidChange(_ textField: UITextField) {
       _updatePlaceHolderVisibility()
    }
    
