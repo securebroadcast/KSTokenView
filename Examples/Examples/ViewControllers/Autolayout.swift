@@ -34,9 +34,9 @@ class Autolayout: UIViewController {
         tokenView.delegate = self
         tokenView.promptText = "Top: "
         tokenView.placeholder = "Type to search"
-        tokenView.descriptionText = "Languages"
+//        tokenView.descriptionText = "Languages"
         tokenView.maxTokenLimit = -1
-        tokenView.searchResultHeight = 100
+//        tokenView.searchResultHeight = 100
         tokenView.minimumCharactersToSearch = 0 // Show all results without without typing anything
         tokenView.style = .squared
         tokenView.returnKeyType(type: .done)
@@ -45,7 +45,7 @@ class Autolayout: UIViewController {
 
 extension Autolayout: KSTokenViewDelegate {
     func tokenView(_ tokenView: KSTokenView, performSearchWithString string: String, completion: ((_ results: Array<AnyObject>) -> Void)?) {
-        if (string.characters.isEmpty){
+        if (string.isEmpty){
             completion!(names as Array<AnyObject>)
             return
         }

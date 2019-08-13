@@ -99,10 +99,10 @@ open class KSTokenView: UIView {
   //fileprivate var _searchTableView: UITableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
   //fileprivate var _resultArray = [AnyObject]()
   //fileprivate var _showingSearchResult = false
-  fileprivate var _indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+  fileprivate var _indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
   //fileprivate var _searchResultHeight: CGFloat = 200.0
   fileprivate var _lastSearchString: String = ""
-  fileprivate var _intrinsicContentHeight: CGFloat = UIViewNoIntrinsicMetric
+  fileprivate var _intrinsicContentHeight: CGFloat = UIView.noIntrinsicMetric
   
   //MARK: - Public Properties
   //__________________________________________________________________________________
@@ -435,7 +435,7 @@ open class KSTokenView: UIView {
   }
   
   override open var intrinsicContentSize : CGSize {
-    return CGSize(width: UIViewNoIntrinsicMetric, height: _intrinsicContentHeight)
+    return CGSize(width: UIView.noIntrinsicMetric, height: _intrinsicContentHeight)
   }
   
   //MARK: - Public Methods

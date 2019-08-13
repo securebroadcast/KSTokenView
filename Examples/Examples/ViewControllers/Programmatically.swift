@@ -35,7 +35,7 @@ class Programmatically: UIViewController {
         tokenView.delegate = self
         tokenView.promptText = "Favorites: "
         tokenView.placeholder = "Type to search"
-        tokenView.descriptionText = "Languages"
+//      tokenView.description = "Languages"
         tokenView.style = .squared
         view.addSubview(tokenView)
         for i in 0...20 {

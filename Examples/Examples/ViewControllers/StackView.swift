@@ -35,7 +35,7 @@ class StackView: UIViewController {
         tokenView.delegate = self
         tokenView.promptText = "Top 5: "
         tokenView.placeholder = "Type to search"
-        tokenView.descriptionText = "Languages"
+//        tokenView.descriptionText = "Languages"
         tokenView.maxTokenLimit = 5
         tokenView.minimumCharactersToSearch = 0 // Show all results without without typing anything
         tokenView.style = .squared
@@ -44,7 +44,7 @@ class StackView: UIViewController {
 
 extension StackView: KSTokenViewDelegate {
     func tokenView(_ tokenView: KSTokenView, performSearchWithString string: String, completion: ((_ results: Array<AnyObject>) -> Void)?) {
-        if (string.characters.isEmpty){
+        if (string.isEmpty){
             completion!(names as Array<AnyObject>)
             return
         }
